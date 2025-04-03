@@ -5,13 +5,15 @@ import { getShareCount } from "../api/stories/get-share-count";
 
 const Page = async () => {
   const stories = await getStoriesFromFeeds();
-  console.log(stories);
 
-  const myLink =
-    "https://www.dr.dk/nyheder/indland/carl-blev-lam-efter-han-blev-paakoert-af-elcykel-under-cykelloeb-nu-begynder";
+  const { storiesSorted, topStories } = await getShareCount();
 
-  const shareCount = await getShareCount(myLink);
-  console.log(shareCount);
+  console.log("here is the share count", storiesSorted);
+
+  const filteredStories = storiesSorted.filter(
+    (item) => item.organisation === "Berlingske"
+  );
+  console.log("here is the filtered stories", filteredStories);
   return (
     <>
       <AddRssFeedForm></AddRssFeedForm>

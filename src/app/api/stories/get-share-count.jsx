@@ -1,16 +1,21 @@
 import { getStoriesFromFeeds } from "./get-stories-from-feeds";
-//sharedcount api key: 858105ffedad7eceb169b391497a6b7f07dcf4cf
-//sample api call: https://api.sharedcount.com/v1.1?apikey=858105ffedad7eceb169b391497a6b7f07dcf4cf&url=https://www.dr.dk/nyheder/indland/carl-blev-lam-efter-han-blev-paakoert-af-elcykel-under-cykelloeb-nu-begynder
+import { fetchShareCount } from "./fetch-share-count";
 
-export const getShareCount = async (url) => {
-  const params = new URLSearchParams({
-    apikey: "858105ffedad7eceb169b391497a6b7f07dcf4cf",
-    url,
+export const getShareCount = async () => {
+  const stories = await getStoriesFromFeeds();
+
+  const shareCountPromises = stories.map(async (story) => {
+    const shareData = await fetchShareCount(story.link);
+    return { ...story, shares: shareData.Facebook.share_count };
   });
 
-  const response = await fetch(`https://api.sharedcount.com/v1.1?${params}`);
+  const storiesWithShareCounts = await Promise.all(shareCountPromises);
 
-  const data = await response.json();
+  const storiesSorted = storiesWithShareCounts.sort(
+    (a, b) => b.shares - a.shares
+  );
 
-  return data;
+  const topStories = storiesSorted.slice(0, 10);
+
+  return { storiesSorted, topStories };
 };

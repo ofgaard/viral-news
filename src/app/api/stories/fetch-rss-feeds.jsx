@@ -1,25 +1,24 @@
+import Parser from "rss-parser";
+
+const parser = new Parser();
+
 const fetchRssFeeds = async (feed) => {
-  const params = new URLSearchParams({
-    rss_url: feed.link,
-    api_key: "amf1pqbndtiy9lituzi0kumhg0ptxkbfkwiaa3xy",
-    count: 10,
-  });
+  try {
+    const parsedFeed = await parser.parseURL(feed.link);
 
-  const response = await fetch(
-    `https://api.rss2json.com/v1/api.json?${params}`
-  );
-
-  const data = await response.json();
-
-  return data.items.map((item) => ({
-    title: item.title,
-    link: item.link,
-    pubDate: item.pubDate,
-    description: item.description,
-    content: item.content,
-    image: item.image,
-    organisation: feed.organisation,
-  }));
+    return parsedFeed.items.map((item) => ({
+      title: item.title || "No Title",
+      link: item.link || "",
+      pubDate: item.pubDate || item.isoDate || new Date().toISOString(),
+      description: item.contentSnippet || item.description || "",
+      content: item.content || "",
+      image: item.enclosure?.url || "",
+      organisation: feed.organisation,
+    }));
+  } catch (error) {
+    console.error(`Error fetching from ${feed.link}:`, error.message);
+    return [];
+  }
 };
 
 export default fetchRssFeeds;
