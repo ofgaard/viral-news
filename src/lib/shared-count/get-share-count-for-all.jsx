@@ -1,7 +1,8 @@
-import { getStoriesFromFeeds } from "./get-stories-from-feeds";
-import { fetchShareCount } from "./fetch-share-count";
+import { cache } from "react";
+import { getStoriesFromFeeds } from "../rss/get-stories-from-feeds";
+import { fetchShareCount } from "../../app/api/shared-count/fetch-share-count";
 
-export const getShareCount = async () => {
+export const getShareCountForAll = cache(async () => {
   const stories = await getStoriesFromFeeds();
 
   const shareCountPromises = stories.map(async (story) => {
@@ -18,4 +19,4 @@ export const getShareCount = async () => {
   const topStories = storiesSorted.slice(0, 10);
 
   return { storiesSorted, topStories };
-};
+});
