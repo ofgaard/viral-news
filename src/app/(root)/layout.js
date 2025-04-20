@@ -4,7 +4,7 @@ import { ThemeProvider } from "@/components/theme-provider";
 
 export const metadata = {
   title: "Viral News",
-  description: "The Stories We Talk About",
+  description: "Stories We Talk About",
 };
 
 export default function RootLayout({ children }) {
