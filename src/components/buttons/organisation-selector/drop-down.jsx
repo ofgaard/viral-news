@@ -14,24 +14,27 @@ const DropDown = ({ organisations, selected }) => {
   const router = useRouter();
 
   const handleSelect = (value) => {
-    if (value) {
+    if (!value || value === "all") {
+      router.push("/top-stories");
+    } else {
       router.push(`/top-stories/${value}`);
     }
   };
 
-  console.log("orgs:", organisations);
+  console.log("selected org", selected);
 
   return (
-    <div className="md:w-[20%] mb-6">
+    <div className="w-[28%] h-4">
       <Select value={selected} onValueChange={handleSelect}>
         <SelectTrigger className="w-full">
-          <SelectValue placeholder="Select an organisation" />
+          <SelectValue placeholder={selected || "Top"} />
         </SelectTrigger>
         <SelectContent>
           <SelectGroup>
             <SelectLabel>Organisations</SelectLabel>
-            {organisations.map((org) => (
-              <SelectItem key={org.id} value={org}>
+            <SelectItem value="all">Top 10</SelectItem>
+            {organisations.map((org, index) => (
+              <SelectItem key={index} value={org}>
                 {org}
               </SelectItem>
             ))}
