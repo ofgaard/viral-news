@@ -1,7 +1,6 @@
 import "./globals.css";
-import Navbar from "@/components/navbar/Navbar";
+import Navbar from "@/components/navbar/Navbar.jsx";
 import { ThemeProvider } from "@/components/theme-provider";
-import { ModeToggle } from "@/components/ui/mode-toggle";
 
 export const metadata = {
   title: "Viral News",
