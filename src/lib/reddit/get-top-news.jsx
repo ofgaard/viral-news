@@ -1,7 +1,12 @@
 import formatDate from "../helper-functions/format-date";
 const GetTopNews = async () => {
   const response = await fetch(
-    "https://www.reddit.com/r/Denmark/search.json?q=flair_name%3A%22news%22&restrict_sr=1&type=link&sort=top&t=week&limit=10"
+    "https://www.reddit.com/r/Denmark/search.json?q=flair_name%3A%22news%22&restrict_sr=1&type=link&sort=top&t=week&limit=10",
+    {
+      headers: {
+        "User-Agent": "ViralNews/1.0 (ofgaard@github.com)",
+      },
+    }
   );
 
   console.log("Response Status:", response.status);
