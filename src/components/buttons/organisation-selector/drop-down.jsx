@@ -24,7 +24,7 @@ const DropDown = ({ organisations, selected }) => {
   console.log("selected org", selected);
 
   return (
-    <div className="w-[28%] h-4">
+    <div className="w-[80%] md:w-[28%] h-4">
       <Select value={selected} onValueChange={handleSelect}>
         <SelectTrigger className="w-full">
           <SelectValue placeholder={selected || "Top"} />

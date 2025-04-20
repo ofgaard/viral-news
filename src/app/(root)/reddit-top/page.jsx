@@ -4,7 +4,7 @@ import RedditPostContainer from "@/components/containers/reddit-post-container";
 import RedditPostCard from "@/components/cards/reddit-post-card";
 const Reddit = async () => {
   const posts = await fetchTopRedditNews();
-  // const { sortedPosts } = await GetTopNews();
+  console.log("posts", posts);
   return (
     <div className="flex flex-col items-center gap-15">
       <RedditPostContainer>

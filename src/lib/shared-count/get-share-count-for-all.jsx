@@ -7,10 +7,16 @@ export const getShareCountForAll = unstable_cache(
     const stories = await getStoriesFromFeeds();
 
     const shareCountPromises = stories.map(async (story) => {
-      const shareData = await fetchShareCount(story.link);
-      return { ...story, shares: shareData.Facebook.share_count };
-    });
+      try {
+        const shareData = await fetchShareCount(story.link);
 
+        return { ...story, shares: shareData?.Facebook?.share_count || 0 };
+      } catch (error) {
+        console.error(`Error fetching share count for ${story.link}:`, error);
+
+        return { ...story, shares: 0 };
+      }
+    });
     const storiesWithShareCounts = await Promise.all(shareCountPromises);
 
     const storiesSorted = storiesWithShareCounts.sort(

@@ -5,6 +5,8 @@ import StoryCard from "@/components/cards/story-card";
 const TopStories = async () => {
   const { topStories } = await getShareCountForAll();
 
+  console.log("top stories", topStories);
+
   return (
     <div className="flex flex-col items-center gap-15">
       <StoryContainer>
