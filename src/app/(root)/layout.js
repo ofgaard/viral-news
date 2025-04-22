@@ -1,5 +1,5 @@
 import "./globals.css";
-import Navbar from "@/components/navbar/Navbar.jsx";
+import Navbar from "@/components/navbar/navbar.jsx";
 import { ThemeProvider } from "@/components/theme-provider";
 
 export const metadata = {
