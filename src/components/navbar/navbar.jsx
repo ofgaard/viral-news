@@ -39,7 +39,7 @@ const Navbar = () => {
       </div>
 
       {isMenuOpen && (
-        <div className="absolute top-20 left-0 w-full bg-white dark:bg-black shadow-md md:hidden">
+        <div className="absolute top-20 left-0 w-full bg-background shadow-md md:hidden">
           <div className="flex flex-col items-center gap-4 py-4">
             <Link
               href="/top-stories"
