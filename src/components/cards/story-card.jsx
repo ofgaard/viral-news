@@ -1,4 +1,3 @@
-import { FaExternalLinkAlt } from "react-icons/fa";
 import formatDate from "@/lib/helper-functions/format-date";
 
 const StoryCard = ({ story }) => {

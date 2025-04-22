@@ -1,5 +1,3 @@
-import { FaExternalLinkAlt } from "react-icons/fa";
-
 const RedditPostCard = ({ post }) => {
   return (
     <a
@@ -11,7 +9,7 @@ const RedditPostCard = ({ post }) => {
     >
       <div className="flex-shrink-0">
         <img
-          src={post.image}
+          src={post.thumbnail}
           alt="Post Image"
           className="object-cover w-15 h-15 md:w-30 md:h-30 rounded-md"
         />
