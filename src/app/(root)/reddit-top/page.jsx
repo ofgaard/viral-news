@@ -2,9 +2,8 @@ import { fetchTopRedditNews } from "@/app/api/reddit/fetch-posts";
 import RedditPostContainer from "@/components/containers/reddit-post-container";
 import RedditPostCard from "@/components/cards/reddit-post-card";
 const Reddit = async () => {
-  const { sortedPosts } = await fetchTopRedditNews();
-  console.log("sortedPosts", sortedPosts[1]);
-
+  const posts = await fetchTopRedditNews();
+  // const { sortedPosts } = await GetTopNews();
   return (
     <div className="flex flex-col items-center gap-15">
       <RedditPostContainer>

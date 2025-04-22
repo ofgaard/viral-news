@@ -1,16 +1,6 @@
-"use client";
-
-import { useState } from "react";
 import { ModeToggle } from "@/components/ui/mode-toggle";
 import Link from "next/link";
-import { Menu, X } from "lucide-react";
 const Navbar = () => {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-
-  const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
-
-  const closeMenu = () => setIsMenuOpen(false);
-
   return (
     <div className="flex items-center justify-between px-10">
       <Link href="/top-stories">
