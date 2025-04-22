@@ -1,17 +1,14 @@
-"use client"; // ensure it works on the client-side
+"use client";
 
 import { useState } from "react";
 import { ModeToggle } from "@/components/ui/mode-toggle";
 import Link from "next/link";
-import { Menu, X } from "lucide-react"; // import icons for the burger menu
-
+import { Menu, X } from "lucide-react";
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-  // Toggle the burger menu open/close
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
 
-  // Close the menu when a link is clicked
   const closeMenu = () => setIsMenuOpen(false);
 
   return (

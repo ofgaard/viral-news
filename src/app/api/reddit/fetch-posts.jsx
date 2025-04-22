@@ -1,4 +1,5 @@
 import { getRedditAccessToken } from "./auth";
+import formatDate from "@/lib/helper-functions/format-date";
 
 export const fetchTopRedditNews = async () => {
   const token = await getRedditAccessToken();
@@ -15,9 +16,17 @@ export const fetchTopRedditNews = async () => {
 
   const data = await response.json();
 
-  if (!response.ok) {
-    throw new Error(`Reddit API error: ${JSON.stringify(data)}`);
-  }
+  const posts = data.data.children.map((post) => ({
+    title: post.data.title,
+    url: post.data.url,
+    likes: post.data.ups,
+    comments: post.data.num_comments,
+    domain: post.data.domain,
+    date: formatDate(post.data.created_utc),
+    image: post.data.thumbnail,
+  }));
 
-  return data.data.children.map((post) => post.data);
+  const sortedPosts = posts.sort((a, b) => b.likes - a.likes);
+
+  return { sortedPosts };
 };
