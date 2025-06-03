@@ -13,7 +13,7 @@ const Navbar = () => {
   const closeMenu = () => setIsMenuOpen(false);
 
   return (
-    <div className="flex items-center justify-between px-10">
+    <div className="flex items-center justify-between px-10 sticky top-0 bg-background">
       <Link href="/top-stories">
         <img src="logo.png" alt="Logo" className="h-20 cursor-pointer" />
       </Link>
