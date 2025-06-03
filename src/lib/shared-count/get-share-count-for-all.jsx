@@ -6,7 +6,16 @@ export const getShareCountForAll = unstable_cache(
   async () => {
     const stories = await getStoriesFromFeeds();
 
-    const shareCountPromises = stories.map(async (story) => {
+    const seen = new Set();
+    const uniqueStories = stories.filter((story) => {
+      if (seen.has(story.link)) {
+        return false;
+      }
+      seen.add(story.link);
+      return true;
+    });
+
+    const shareCountPromises = uniqueStories.map(async (story) => {
       try {
         const shareData = await fetchShareCount(story.link);
 
