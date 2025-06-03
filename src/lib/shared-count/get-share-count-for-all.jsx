@@ -8,9 +8,10 @@ export const getShareCountForAll = unstable_cache(
 
     const seen = new Set();
     const uniqueStories = stories.filter((story) => {
-      const key = `${story.link}::${story.organisation}`;
-      if (seen.has(key)) return false;
-      seen.add(key);
+      if (seen.has(story.link)) {
+        return false;
+      }
+      seen.add(story.link);
       return true;
     });
 
