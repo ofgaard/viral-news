@@ -7,6 +7,7 @@ export const fetchTopRedditNews = async () => {
   const response = await fetch(
     "https://oauth.reddit.com/r/Denmark/search?q=flair_name%3A%22news%22&restrict_sr=1&sort=top&t=week&limit=10",
     {
+      cache: "no-store",
       headers: {
         Authorization: `Bearer ${token}`,
         "User-Agent": "MyRedditFetcher/1.0 by your-username",
