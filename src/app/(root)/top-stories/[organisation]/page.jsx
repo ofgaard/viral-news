@@ -6,6 +6,11 @@ const TopStoriesByOrganisation = async ({ params }) => {
   const decodedOrg = decodeURIComponent(params.organisation);
   const { storiesSorted } = await getShareCountForAll();
   console.log("decodedOrg", decodedOrg);
+  console.log(
+    "All stories:",
+    storiesSorted.map((s) => s.organisation)
+  );
+  console.log("Decoded org:", decodedOrg);
 
   const filteredStories = storiesSorted
     .filter(
